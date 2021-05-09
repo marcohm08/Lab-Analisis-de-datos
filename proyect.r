@@ -1,6 +1,7 @@
 library(ggpubr)
 library(scatterplot3d)
 library(ggplot2)
+library(corrplot)
 
 head <- c("animal name","hair",
           "feathers","eggs","milk","airborne","aquatic","predator",
@@ -25,3 +26,5 @@ p <- ggboxplot(
   , add.params = list(color = "#FC4E07"),
   color = "legs",title = "Cantidad de patas por tipo",ylab = "Cantidad de piernas"
 )
+
+
