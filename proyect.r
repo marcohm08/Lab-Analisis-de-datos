@@ -3,6 +3,7 @@ library(scatterplot3d)
 library(ggplot2)
 library(corrplot)
 library(caret)
+library(dplyr)
 
 head <- c("animal name","hair",
           "feathers","eggs","milk","airborne","aquatic","predator",
@@ -28,8 +29,10 @@ p <- ggboxplot(
   color = "legs",title = "Cantidad de patas por tipo",ylab = "Cantidad de piernas"
 )
 
-num.wide.data <- data[,-1]
+data$type <- factor(data$type)
+num.wide.data <- data[,-1] # se usa cuando se necesiten los valores numericos
 data.wide <- data[,-1]
+# Para hacer un resumen de las variables adecuado se transforman las columnas con valores 1 y 0 a booleanos
 data.wide[["hair"]] <- as.logical(data.wide[["hair"]])
 data.wide[["feathers"]] <- as.logical(data.wide[["feathers"]])
 data.wide[["eggs"]] <- as.logical(data.wide[["eggs"]])
@@ -46,12 +49,29 @@ data.wide[["tail"]] <- as.logical(data.wide[["tail"]])
 data.wide[["domestic"]] <- as.logical(data.wide[["domestic"]])
 data.wide[["catsize"]] <- as.logical(data.wide[["catsize"]])
 
+summary(data.wide)
+
+# Graficos de barras para el analisis 
+
+# hair
+
+dfh <- data.wide %>%
+  group_by(type,hair) %>%
+  summarise(counts = n()) 
+
+hp <- ggplot(data = dfh, mapping = aes(x = type, y= counts,  fill = hair)) + geom_bar(stat="identity",position = "dodge")
+
+# feathers
+
+dff <- data.wide %>%
+  group_by(type,feathers) %>%
+  summarise(counts = n()) 
+
+hp <- ggplot(data = dff, mapping = aes(x = type, y= counts,  fill = feathers)) + geom_bar(stat="identity",position = "dodge")
 
 
 corr <- round(cor(data.wide), 1)
 
 cp <- corrplot(corr,method = "number",type = "upper")
-
-summary(data.wide)
 
 
