@@ -59,7 +59,7 @@ dfh <- data.wide %>%
   group_by(type,hair) %>%
   summarise(counts = n()) 
 
-hp <- ggplot(data = dfh, mapping = aes(x = type, y= counts,  fill = hair)) + geom_bar(stat="identity",position = "dodge")
+hh <- ggplot(data = dfh, mapping = aes(x = type, y= counts,  fill = hair)) + geom_bar(stat="identity",position = "dodge")
 
 # feathers
 
@@ -67,7 +67,134 @@ dff <- data.wide %>%
   group_by(type,feathers) %>%
   summarise(counts = n()) 
 
-hp <- ggplot(data = dff, mapping = aes(x = type, y= counts,  fill = feathers)) + geom_bar(stat="identity",position = "dodge")
+hf <- ggplot(data = dff, mapping = aes(x = type, y= counts,  fill = feathers)) + geom_bar(stat="identity",position = "dodge")
+
+# eggs
+
+dfe <- data.wide %>%
+  group_by(type,eggs) %>%
+  summarise(counts = n()) 
+
+he <- ggplot(data = dfe, mapping = aes(x = type, y= counts,  fill = eggs)) + geom_bar(stat="identity",position = "dodge")
+
+
+# milk
+
+dfm <- data.wide %>%
+  group_by(type,milk) %>%
+  summarise(counts = n()) 
+
+hm <- ggplot(data = dfm, mapping = aes(x = type, y= counts,  fill = milk)) + geom_bar(stat="identity",position = "dodge")
+
+
+# airborne
+
+dfa <- data.wide %>%
+  group_by(type,airborne) %>%
+  summarise(counts = n()) 
+
+ha <- ggplot(data = dfa, mapping = aes(x = type, y= counts,  fill = airborne)) + geom_bar(stat="identity",position = "dodge")
+
+
+# aquatic
+
+dfaq <- data.wide %>%
+  group_by(type,aquatic) %>%
+  summarise(counts = n()) 
+
+haq <- ggplot(data = dfaq, mapping = aes(x = type, y= counts,  fill = aquatic)) + geom_bar(stat="identity",position = "dodge")
+
+
+# predator
+
+dfp <- data.wide %>%
+  group_by(type,predator) %>%
+  summarise(counts = n()) 
+
+hp <- ggplot(data = dfp, mapping = aes(x = type, y= counts,  fill = predator)) + geom_bar(stat="identity",position = "dodge")
+
+
+# toothed
+
+dft <- data.wide %>%
+  group_by(type,toothed) %>%
+  summarise(counts = n()) 
+
+ht <- ggplot(data = dft, mapping = aes(x = type, y= counts,  fill = toothed)) + geom_bar(stat="identity",position = "dodge")
+
+
+# backbone
+
+dfb <- data.wide %>%
+  group_by(type,backbone) %>%
+  summarise(counts = n()) 
+
+hb <- ggplot(data = dfb, mapping = aes(x = type, y= counts,  fill = backbone)) + geom_bar(stat="identity",position = "dodge")
+
+
+# breathes
+
+dfbr <- data.wide %>%
+  group_by(type,breathes) %>%
+  summarise(counts = n()) 
+
+hbr <- ggplot(data = dfbr, mapping = aes(x = type, y= counts,  fill = breathes)) + geom_bar(stat="identity",position = "dodge")
+
+
+# venomous
+
+dfv <- data.wide %>%
+  group_by(type,venomous) %>%
+  summarise(counts = n()) 
+
+hv <- ggplot(data = dfv, mapping = aes(x = type, y= counts,  fill = venomous)) + geom_bar(stat="identity",position = "dodge")
+
+
+# fins
+
+dffi <- data.wide %>%
+  group_by(type,fins) %>%
+  summarise(counts = n()) 
+
+hfi <- ggplot(data = dffi, mapping = aes(x = type, y= counts,  fill = fins)) + geom_bar(stat="identity",position = "dodge")
+
+
+# legs
+
+dfl <- data.wide %>%
+  group_by(type,legs) %>%
+  summarise(counts = n()) 
+
+hl <- ggplot(data = dfl, mapping = aes(x = type, y= counts,  fill = legs)) + geom_bar(stat="identity",position = "dodge")
+
+
+# tail
+
+dfta <- data.wide %>%
+  group_by(type,tail) %>%
+  summarise(counts = n()) 
+
+hta <- ggplot(data = dfta, mapping = aes(x = type, y= counts,  fill = tail)) + geom_bar(stat="identity",position = "dodge")
+
+
+# domestic
+
+dfd <- data.wide %>%
+  group_by(type,domestic) %>%
+  summarise(counts = n()) 
+
+hd <- ggplot(data = dfd, mapping = aes(x = type, y= counts,  fill = domestic)) + geom_bar(stat="identity",position = "dodge")
+
+
+# catsize
+
+dfc <- data.wide %>%
+  group_by(type,catsize) %>%
+  summarise(counts = n()) 
+
+hc <- ggplot(data = dfc, mapping = aes(x = type, y= counts,  fill = catsize)) + geom_bar(stat="identity",position = "dodge")
+
+
 
 
 corr <- round(cor(data.wide), 1)
