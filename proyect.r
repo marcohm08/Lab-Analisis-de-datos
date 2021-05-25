@@ -4,6 +4,10 @@ library(ggplot2)
 library(corrplot)
 library(caret)
 library(dplyr)
+library(vcd)
+library(rcompanion)
+library(creditmodel)
+
 
 head <- c("animal name","hair",
           "feathers","eggs","milk","airborne","aquatic","predator",
@@ -20,6 +24,13 @@ ph <- gghistogram(
   color = "#1631D8",
   bins = 7
 )
+
+type.count <- data%>%
+  group_by(type) %>%
+  summarise(counts = n()) 
+
+type.p <- ggplot(data = type.count, mapping = aes(x = type, y= counts)) + geom_bar(stat="identity",fill= "steelblue")
+type.p <- type.p + ggtitle("Cantidad de animales por tipo") + theme(plot.title = element_text(hjust = 0.5))
 
 p <- ggboxplot(
   data,
@@ -197,8 +208,14 @@ hc <- ggplot(data = dfc, mapping = aes(x = type, y= counts,  fill = catsize)) + 
 
 
 
-corr <- round(cor(data.wide), 1)
+corr <- round(cor(x = data.wide), 1)
 
-cp <- corrplot(corr,method = "number",type = "upper")
+cp <- corrplot(corr,method = "number",type = "lower")
 
+a <- cramerV(num.wide.data$hair,num.wide.data$type,bias.correct = FALSE)
+b <- cramerV(num.wide.data,bias.correct = FALSE)
+
+c <- char_cor(num.wide.data, x = head[head != "animal name" ])
+
+cp <- corrplot(c,method = "number",type = "lower")
 
