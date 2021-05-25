@@ -208,14 +208,14 @@ hc <- ggplot(data = dfc, mapping = aes(x = type, y= counts,  fill = catsize)) + 
 
 
 
-corr <- round(cor(x = data.wide), 1)
+#corr <- round(cor(x = data.wide), 1)
 
-cp <- corrplot(corr,method = "number",type = "lower")
+#cp <- corrplot(corr,method = "number",type = "lower")
 
-a <- cramerV(num.wide.data$hair,num.wide.data$type,bias.correct = FALSE)
-b <- cramerV(num.wide.data,bias.correct = FALSE)
+#a <- cramerV(num.wide.data$hair,num.wide.data$type,bias.correct = FALSE)
+#b <- cramerV(num.wide.data,bias.correct = FALSE)
 
-c <- char_cor(num.wide.data, x = head[head != "animal name" ])
+correlations <- char_cor(num.wide.data, x = head[head != "animal name" ])
 
-cp <- corrplot(c,method = "number",type = "lower")
+cp <- corrplot(correlations,method = "number",type = "lower",cl.lim = c(0,1),title = "Matriz de correlacion para la base de datos")
 
